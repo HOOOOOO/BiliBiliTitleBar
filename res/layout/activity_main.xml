@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bilibilitab.MainActivity" >
+
+    <com.example.bilibilititlebar.CustomLayout 
+        android:id="@+id/customLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+        <LinearLayout 
+            android:id="@+id/titlebar"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:orientation="vertical"
+            android:background="@color/color_titlebar"
+            android:gravity="center">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BiliBiliTitleBar"
+                android:textSize="20sp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        
+        <com.example.bilibilititlebar.ChooseBar
+            android:id="@+id/choosebar"
+           	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:background="@color/color_titlebar"/>
+    
+   		<android.support.v4.view.ViewPager
+        	android:id="@+id/view_pager"
+        	android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:layout_marginBottom="-50dip"/>
+    </com.example.bilibilititlebar.CustomLayout>
+
+</RelativeLayout>

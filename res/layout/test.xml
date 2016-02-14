@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/theme_backgruand_color">
+    
+    <com.example.bilibilititlebar.CustomLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        >
+        <LinearLayout 
+            android:id="@+id/titlebar"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:orientation="vertical"
+            android:background="@color/color_titlebar"
+            android:gravity="center">
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BiliBiliTitleBar"
+                android:textSize="20sp"
+                android:textColor="#ffffff"/>
+        </LinearLayout>
+        <com.example.bilibilititlebar.ChooseBar
+        android:id="@+id/choosebar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_titlebar">
+            </com.example.bilibilititlebar.ChooseBar>
+        
+        <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+            </android.support.v4.view.ViewPager>
+    </com.example.bilibilititlebar.CustomLayout>
+</LinearLayout>
