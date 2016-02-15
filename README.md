@@ -11,4 +11,6 @@
 
 这里有一个需要注意的地方，就是点击的时候传给CustomLayout的纵坐标和给ListView的纵坐标是不一样的，因为有标题栏和标签栏的缘故。所以当CustomLayout向上滑动时，ListView也在移动，所以手中接触屏幕的地方距离ListView的距离是不变的，这样传给ListView的纵坐标也一直不变，所以ListView是不会滚动的。
 
+去找了一下资料，发现不同于onInterceptTouchEvent()函数，找到目标后就不再调用，dispatchTouchEvent()函数是一直被调用的，然后把处理都搬到这个函数里面，接着再增加一个变量来记录上次传过来的坐标，通过本次坐标，初始坐标和上次记录下来的坐标做比对来判断是否改变了滑动方向，问题就迎刃而解了。
 
+参考的博客：[工匠若水--Android触摸屏事件派发机制详解与源码分析二(ViewGroup篇)](http://blog.csdn.net/yanbober/article/details/45912661)
