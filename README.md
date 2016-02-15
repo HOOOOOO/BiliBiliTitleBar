@@ -13,6 +13,8 @@
 
 --更新--
 
+![image](https://github.com/HOOOOOO/BiliBiliTitleBar/blob/master/gif/GIF3.gif)
+
 去找了一下资料，发现不同于onInterceptTouchEvent()函数，找到目标后就不再调用，dispatchTouchEvent()函数是一直被调用的，然后把处理都搬到这个函数里面，接着再增加一个变量来记录上次传过来的坐标，通过本次坐标，初始坐标和上次记录下来的坐标做比对来判断是否改变了滑动方向，问题就迎刃而解了。
 
 参考的博客：[工匠若水--Android触摸屏事件派发机制详解与源码分析二(ViewGroup篇)](http://blog.csdn.net/yanbober/article/details/45912661)
