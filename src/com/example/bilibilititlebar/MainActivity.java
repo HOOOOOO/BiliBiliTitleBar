@@ -85,30 +85,6 @@ public class MainActivity extends FragmentActivity {
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		// TODO Auto-generated method stub
-		/*Log.e("MainActivity", ""+event.getAction());
-		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			Log.e("MainActivity", ""+event.getY());
-			mInitX = event.getX();
-			mInitY = event.getY();
-			break;
-        case MotionEvent.ACTION_MOVE:
-        	Log.e("MainActivity", ""+event.getY());
-        	if(isFirst){
-        		mInitX = event.getX();
-        		mInitY = event.getY();
-        		isFirst = false;
-        	}
-        	if(!isFirst){
-        		Log.e("mInitY - event.getY()", ""+(mInitY - event.getY()));
-        		mCustomLayout.scrollTo(0, (int) (mInitY - event.getY()));
-        	}
-		default:
-			break;
-		}
-		return super.onTouchEvent(event);
-	}*/
 		return super.onTouchEvent(event);
 	}
 }

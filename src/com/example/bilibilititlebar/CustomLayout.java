@@ -18,6 +18,8 @@ public class CustomLayout extends LinearLayout{
 	private float mInterInitX;
 	private float mInterInitY;
 	private int mState = DOWN;
+	private float mLastY;
+	private float mLastX;
 
 	public CustomLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -51,35 +53,37 @@ public class CustomLayout extends LinearLayout{
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 		// TODO Auto-generated method stub
-		boolean b =  super.dispatchTouchEvent(ev);
-		return b;
-	}
-	
-	@Override
-	public boolean onInterceptTouchEvent(MotionEvent ev) {
-		
-		// TODO Auto-generated method stub
 		switch (ev.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			mInterInitX = ev.getX();
 			mInterInitY = ev.getY();
+			mLastY = ev.getY();
+			mLastX = ev.getX();
 			Log.e("CustomLayout.onInterceptTouchEvent", ""+mInterInitY);
 			break;
 		case MotionEvent.ACTION_MOVE:
-			if(Math.abs(mInterInitX-ev.getX()) > Math.abs(mInterInitY-ev.getY()))
+			if(Math.abs(mLastX-ev.getX()) > Math.abs(mLastY-ev.getY()))
 				break;
+			if(mLastY > mInterInitY && mLastY > ev.getY() && mState == DOWN){
+				mInterInitY = mLastY;
+				mInterInitX = mLastX;
+			}
+			if(mLastY < mInterInitY && mLastY < ev.getY() && mState == UP){
+				mInterInitY = mLastY;
+				mInterInitX = mLastX;
+			}
 			int s = (int) (mInterInitY-ev.getY());
 			if(getScrollY() <= mHeightOfTitleBar && getScrollY() >= 0){
-				if(s > 0){
-					if(s <= mHeightOfTitleBar && mState == DOWN)
+				if(s > 0  && mState == DOWN){
+					if(s <= mHeightOfTitleBar)
 						scrollTo(0, s);
 					else{
 						scrollTo(0, mHeightOfTitleBar);
 						mState = UP;
 					}
 				}
-				if(s < 0){
-					if(s >= -mHeightOfTitleBar && mState == UP)
+				if(s < 0 && mState == UP){
+					if(s >= -mHeightOfTitleBar)
 						scrollTo(0, mHeightOfTitleBar + s);
 					else{
 						scrollTo(0, 0);
@@ -87,6 +91,8 @@ public class CustomLayout extends LinearLayout{
 					}
 				}
 			}
+			mLastY = ev.getY();
+			mLastX = ev.getX();
 			break;
 		case MotionEvent.ACTION_UP:
 			if(Math.abs(mInterInitX-ev.getX()) > Math.abs(mInterInitY-ev.getY()))
@@ -104,6 +110,13 @@ public class CustomLayout extends LinearLayout{
 		default:
 			break;
 		}
+		boolean b =  super.dispatchTouchEvent(ev);
+		return b;
+	}
+	
+	@Override
+	public boolean onInterceptTouchEvent(MotionEvent ev) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 	
